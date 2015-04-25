@@ -1,0 +1,264 @@
+\documentclass[conference]{IEEEtran}
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{cite}
+\ifCLASSINFOpdf
+  \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+\usepackage[cmex10]{amsmath}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{array}
+\usepackage{mdwmath}
+\usepackage{mdwtab}
+%\usepackage{eqparbox}
+\usepackage[tight,footnotesize]{subfigure}
+%\usepackage[caption=false]{caption}
+\usepackage[font=footnotesize]{subfig}
+%\usepackage{stfloats}
+\usepackage{url}
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\begin{document}
+\title{Classificação de alimentos segmentados}
+
+\author{
+\IEEEauthorblockN{Lucas Santana Lellis - R.A.: 69618}
+\IEEEauthorblockA{Instituto de Ciência e Tecnologia\\
+	Universidade Federal de São Paulo} }
+
+% make the title area
+\maketitle
+
+%\IEEEpeerreviewmaketitle
+
+\section{Introdução}
+\IEEEPARstart
+O problema das 8 rainhas consiste em posicionar 8 rainhas em um tabuleiro 
+8x8 de forma que elas não se cruzem em nenhuma direção.
+
+Trata-se de um problema bastante complexo para uma busca em profundidade, 
+já que são possíveis 4.426.165.368 estados diferentes, porém apenas 92 soluções. \cite{wiki8queen}
+
+Existem diversas formas de se resolver este problema, incluindo soluções de inteligência artificial,
+ como a \textbf{subida de encosta} e os \textbf{algoritmos genéticos}.
+\subsection{Subida de encosta}
+Segundo \cite{norvig2014inteligencia}, os algoritmos de subida de encosta baseiam-se em um loop simples
+a fim de maximizar( ou minimizar ) um valor. Trata-se de uma busca gulosa, que tem como condição de parada 
+a descoberta de um valor máximo( ou mínimo ) local ( ou global ), eles param de iterar.
+
+O valor, representado pela "colina", pode ser a \textbf{função de utilidade} que define a solução do
+problema em questão. A cada passo são avaliados os diferentes estados possíveis, sendo escolhida sempre a de maior utilidade.
+
+Este algoritmo apresenta diferentes problemas, como:
+
+
+\begin{itemize}
+	\item O \textbf{máximo local}, (ou mínimo local), em que o valor encontrado não é
+	a solução ideal do problema. 
+	\item As \textbf{cordilheiras} são sequencias de máximos locais, o que torna difícil a navegação 
+	para algoritmos gulosos.
+	\item Os \textbf{platôs} são áreas planas da topologia de espaço de estados. Nestes trechos o algoritmo fica parado, uma vez que não existe um caminho superior para que o algoritmo continue a subir.
+\end{itemize} 
+
+Por estes motivos, este algoritmo possui uma alta taxa de erros, embora seja eficiente quando acerta.
+
+ No caso do problema das 8 rainhas, pretende-se \textbf{minimizar} o número total de colisões entre as rainhas.
+
+
+\subsection{Algoritmo Genético}
+Segundo \cite{norvig2014inteligencia}, um algoritmo genético é uma variante do algoritmo em feixe estocástica
+na qual os sucessores são gerados a partir da combinação de dois estados pais.
+
+Este algoritmo baseia-se em conceitos de seleção natural, em que os seres evoluem a partir do cruzamento e mutação
+dos genes. Estes problemas baseiam-se em conceitos como "variabilidade genética", e de que "os melhores sobrevivem".
+
+O algoritmo possui três etapas principais:
+\begin{itemize}
+	\item \textbf{Geração de problemas: } É o passo em que a população inicial é gerada randomicamente. 
+	\item \textbf{Cruzamento: } O cruzamento entre cromossomos, em que os vetores que os representam são misturados em um \textit{k}.
+	\item \textbf{Mutação: } A mutação altera a informação em alguma parte do vetor, promovendo variações que podem ajudar a alcançar resultados inacessíveis a partir dos estados atuais.
+\end{itemize}
+
+Este algoritmo também procura maximizar uma função de utilidade, e pode ser implementado com diferentes abordagens.
+\hfill São José dos Campos, 24 de Abril de 2015
+
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation Results}
+%\label{fig_sim}
+%\end{figure}
+
+%\begin{figure*}[!t]
+%\centerline{\subfloat[Case I]\includegraphics[width=2.5in]{subfigcase1}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{subfigcase2}%
+%\label{fig_second_case}}}
+%\caption{Simulation results}
+%\label{fig_sim}
+%\end{figure*}
+
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+\section{Objetivos}
+Este projeto tem como objetivo implementar e comparar os algoritmos de \textbf{subida de encosta} e \textbf{genético}.
+Comparando também diferentes configurações do algoritmo genético.
+\section{Metodologia Experimental}
+O projeto foi implementado inteiramente em \textit{Python}, de forma que ambos os algoritmos compartilhassem dos mesmos
+geradores de problemas (\textbf{generate}), e das mesmas funções de utilidade (\textbf{collisions}). Tais funções estão presentes no arquivo "\textit{lucaslellis\_69618\_common.py}".
+\subsection{Algoritmo de subida de encosta}
+O algoritmo de subida de encosta foi feito segundo a especificação de Russel\cite{norvig2014inteligencia}, e se dá, basicamente de acordo com o algoritmo 1. O problema foi divido em diferentes funções para fragmentar o problema, sendo estas:
+\begin{itemize}
+	\item \textbf{Sucessors:} Função que recebe estado atual e retorna um vetor com todos os estados possíveis a partir
+	do estado atual. Os estados são gerados somando ou subtraindo a posição de cada uma das rainhas.
+	\item \textbf{Best:} Função que recebe o vetor de estados sucessores. Ela calcula e compara o número de colisões
+	de cada um dos estados, e retorna o estado com o menor número de colisões.
+\end{itemize}
+\begin{algorithm}
+\caption{Algoritmo de Subida de Encosta}
+\begin{algorithmic}[1]
+	\STATE n = 8 
+	\STATE vec = generate(n)
+	\WHILE {collisions(vec) $\neq$ 0}
+	\STATE s = sucessors(vec)
+	\STATE b = best(s)
+	\IF {( collisions(b) $\leq$ collisions(vec) )}
+	\STATE break
+	\ELSE
+		\STATE	vec = b
+	\ENDIF
+	\ENDWHILE
+\end{algorithmic} 
+\end{algorithm}
+O código referente ao algoritmo está presente no arquivo "\textit{lucaslellis\_69618\_hillclimb.py}". 
+\subsection{Algoritmo genético}
+O algoritmo genético é um problema complexo e foi modelado utilizando classes. Após diversas tentativas em torná-lo
+robusto, a implementação final diferencia-se da definida por Russel\cite{norvig2014inteligencia} em alguns aspectos.\\
+Primeiramente, a etapa de cruzamento gera dois descendentes, ao invés de um. Além disso, o algoritmo mantém uma porcentagem dos melhores genes da geração anterior, garantindo a evolução dos mais fortes, e reduzindo a chance de uma piora nos resultados. Por último, os cruzamentos não são limitados por uma taxa modificável, uma vez que são realizados para complementar o espaço deixado pelos genes "mortos" da geração anterior.\\
+O algoritmo se dá, basicamente de acordo com o algoritmo 2. O problema, ainda mais complexo, foi fragmentado em diversas funções, listadas a seguir:
+\begin{itemize}
+	\item \textbf{crossOver:} Função responsável pela mistura de dois genes (vetores), dado um ponto k.
+	\item \textbf{mutate:} Função utiliza um número aleatório entre 0 e 7 para definir uma posição do vetor, e substitui o valor nesta posição por um outro valor aleatório diferente do atual.
+	\item \textbf{calcFitness:} Calcula o valor de 28 - crossover, uma vez que para o algoritmo genético procuramos maximixar uma função de utilidade.
+	\item \textbf{fillPopulation:} Função responsável por gerar um vetor de genes arbitrários.
+	\item \textbf{sortPopulation:} Função responsável por ordenar um vetor de genes em ordem decrescente de utilidade.
+	\item \textbf{updateFitness:} Atualiza a utilidade de toda a população.	
+	\item \textbf{select:} Seleciona dois genes diferentes de uma população.
+\end{itemize}
+
+Além disso, existem algumas variáveis configuráveis:
+
+\begin{itemize}
+%	populationSize, keepRate,  crossRate, mutationRate, maxIterations
+	\item \textbf{populationSize:} Tamanho fixo da população.
+	\item \textbf{keepRate:} Número de "sobreviventes" à cada geração.
+	\item \textbf{mutationRate:} Probabilidade da mutação.
+	\item \textbf{maxIterations:} Número máximo de gerações.
+\end{itemize}
+
+\begin{algorithm}
+	\caption{Algoritmo Genético}
+	\begin{algorithmic}[1]
+		\REQUIRE populationSize, keepRate, mutationRate, maxIterations
+		\STATE population = []
+		\STATE fillPopulation(population,populationSize)
+		\STATE updateFitness(population)
+		\STATE sortPopulation( population )
+		\STATE newPopulationSz = int(populationSize * keepRate) + int(populationSize * keepRate)\%2
+		\STATE finished = \FALSE
+		\STATE boardSize = 8
+		\STATE crossPoint = rand(0,boardSize)
+		\STATE count = 0
+		\STATE maxFitness = 28
+		\WHILE {finished == \FALSE}
+		\STATE count = count + 1
+		\STATE crossPoint = (crossPoint+1)\%boardSize
+		population = population[0 : newPopulationSz ]
+		\WHILE {length(population) < populationSize }
+		
+		%\IF {( collisions(b) $\leq$ collisions(vec) )}
+		%\STATE a = 1
+		%\ENDIF
+		\STATE gene1, gene2 = select(population)
+		\STATE gene1, gene2 = crossOver(gene1,gene2,crossPoint)
+		\STATE population.append(gene1)
+		\STATE population.append(gene2)
+		\ENDWHILE
+		\FOR {gene in population} 
+		\IF{random(0,100) < mutationRate }
+		\STATE mutate(gene)
+		\ENDIF
+		\ENDFOR
+		\STATE updateFitness(population)
+		\IF{fitness(best) == maxFitness \OR count $\geq$ maxIterations }
+		\STATE finished = \TRUE 
+		\ENDIF
+		\ENDWHILE
+	\end{algorithmic} 
+\end{algorithm}
+O código referente ao algoritmo está presente no arquivo "\textit{lucaslellis\_69618\_genetic.py}".
+
+\subsection{Análise estatística}
+Após implementados e testados, os algoritmos foram executados exaustivamente para a obtenção de dados para posterior
+comparação. Foram anotados o número de passos ( ou gerações ) necessários para finalizar o processamento, e o número de
+colisões encontrados ao final. O número de colisões ser maior do que zero significa que a simulação falhou em chegar a um
+resultado.\\
+Para encontrar a melhor configuração do algoritmo genético, o programa foi executado 500 vezes com 180 diferentes
+combinações de parâmetros, totalizando 90000 execuções. Para limitar o tempo de execução, o algoritmo foi limitado a 1000 gerações.
+
+\section{Resultados e Discussão}
+
+
+\begin{thebibliography}{2}
+\bibitem{wiki8queen}
+Wikipedia, Eight queens puzzle - Disponível em: 
+ http://en.wikipedia.org/wiki/Eight\_queens\_puzzle
+\bibitem{norvig2014inteligencia}
+Stuart Russell, Peter Norvig, and Artificial Intelligence. A modern
+approach. \textit{Artificial Intelligence. Prentice-Hall, Egnlewood Cliffs}, 25,
+1995.
+\end{thebibliography}
+
+\end{document}
+
+
