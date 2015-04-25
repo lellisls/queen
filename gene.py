@@ -139,12 +139,11 @@ def average( population ) :
 		res = res + gene.fitness
 	return int(res/len(population))
 
-def genetic( populationSize, keepRate,  crossRate, mutationRate, maxIterations) :
+def genetic( populationSize, keepRate, mutationRate, maxIterations) :
 	# averages =[]
 	# bests = []
 	# worsts = []
 	Gene.keepRate = keepRate
-	Gene.crossRate = crossRate
 	Gene.mutationRate = mutationRate
 	count = 0
 	new_populationSz = int(populationSize * Gene.keepRate) + int(populationSize * Gene.keepRate)%2
@@ -160,7 +159,7 @@ def genetic( populationSize, keepRate,  crossRate, mutationRate, maxIterations) 
 		count = count + 1
 		cross_point = (cross_point+1)%Gene.board_size
 		population = population[0 : new_populationSz ]
-		# for i in range( 0,int(new_populationSz * Gene.crossRate )) :
+		# for i in range( 0,int(new_populationSz *  )) :
 		while len(population) < populationSize :
 			gene1, gene2 = select(population)
 			gene1, gene2 = gene1.crossover(gene2,cross_point)

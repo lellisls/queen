@@ -27,23 +27,27 @@ def best(suc) :
 
 	return { "vec" : res , "val" : minimum }
 
-n = 8
-count = 0
-#finished = False
-#while finished == False :
-vec = generate(n)
-# print "Initial : " + str(vec)
-while collisions(vec) != 0:
-	count = count + 1
-	s = sucessors(vec)
-	b = best(s)
-	if b["val"] >= collisions(vec) :
-		break
-	else :
-		vec = b["vec"]
-if collisions(vec)==0 :
-	finished = True
-print "Final  :  " + str(vec) + "\n"
-board(vec)
-print str(count) + " iterations."
-print str(collisions(vec)) + " collision(s)."
+def climb( ) :
+	n = 8
+	count = 0
+	#finished = False
+	#while finished == False :
+	vec = generate(n)
+	# print "Initial : " + str(vec)
+	while collisions(vec) != 0:
+		count = count + 1
+		s = sucessors(vec)
+		b = best(s)
+		if b["val"] >= collisions(vec) :
+			break
+		else :
+			vec = b["vec"]
+	if collisions(vec)==0 :
+		finished = True
+	# print "Final  :  " + str(vec) + "\n"
+	# board(vec)
+	return (count,collisions(vec))
+with open("hillclimb.csv", "w") as file :
+	for i in range(0,1000) :
+		count, col = climb()
+		file.write(" {}, {}\n".format(count, col))

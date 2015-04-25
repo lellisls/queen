@@ -22,7 +22,7 @@ for populationSize in [10,30,50,80,100,250,500,750,1000] :
 				counts = []
 				cols = []
 				for experiment in range(0,100) :
-					count, col = genetic( populationSize, keepRate, crossRate, mutationRate, maxIterations )
+					count, col = genetic( populationSize, keepRate, mutationRate, maxIterations )
 					# print "{}, {}, {}, {}, {}, {}, {}".format(populationSize,keepRate,crossRate,mutationRate,maxIterations,count,col)
 					results.write( "{}, {}, {}, {}, {}, {}, {}".format(populationSize,keepRate,crossRate,mutationRate,maxIterations,count,col) +"\n")
 					counts.append(count)
